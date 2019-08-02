@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { colors } from 'utils/colors';
 
 const MastheadWrapper = styled.div`
-  padding-top: 100px;
-  height: 600px;
+  padding: 100px 0;
   width: 100%;
   background: ${colors.DARK};
 `;
