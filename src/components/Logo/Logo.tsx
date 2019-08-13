@@ -2,55 +2,70 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { colors } from 'utils/colors';
 
-interface LogoProps {
-  height: number;
+interface LogoProps extends React.HTMLAttributes<HTMLAnchorElement> {
+  size: number;
   color?: string;
+  href?: string;
 }
 
-const LogoWrapper = styled.a`
-  position: relative;
-  display: flex;
-  align-items: center;
-`;
-
-const StyledSVG = styled.svg<LogoProps>`
+const StyledSvg = styled.svg<LogoProps>`
   position: absolute;
-  width: ${({ height = 50 }) => height}px;
-  height: ${({ height = 50 }) => height}px;
+  width: ${({ size = 50 }) => size}px;
+  height: ${({ size = 50 }) => size}px;
   transform: rotate(54deg);
 `;
 
 const StyledCircle = styled.circle<LogoProps>`
   position: relative;
-  stroke-dasharray: ${({ height = 50 }) => Math.PI * height}px;
-  stroke-dashoffset: ${({ height = 50 }) => Math.PI * height * 0.3}px;
+  stroke-dasharray: ${({ size = 50 }) => Math.PI * size}px;
+  stroke-dashoffset: ${({ size = 50 }) => Math.PI * size * 0.3}px;
 `;
 
-const StyledLink = styled.span<LogoProps>`
+const LogoLabel = styled.span<LogoProps>`
   display: block;
-  margin-left: ${({ height }) => height / 4}px;
-  font-family: 'Pacifico';
-  font-size: ${({ height }) => height / 2}px;
+  margin-left: ${({ size }) => size / 4}px;
   color: ${({ color = colors.DARK }) => color};
+  font-family: 'Pacifico';
+  font-size: ${({ size }) => size / 2}px;
 `;
 
-export const Logo: React.FC<LogoProps> = ({ height, color = colors.DARK }: LogoProps) => {
+const LogoWrapper = styled.a`
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    ${LogoLabel},
+    ${StyledCircle} {
+      color: ${colors.SECONDARY};
+      stroke: ${colors.SECONDARY};
+      transition: all 0.15s ease-out;
+    }
+  }
+`;
+
+export const Logo: React.FC<LogoProps & React.HTMLAttributes<HTMLAnchorElement>> = ({
+  size,
+  color = colors.DARK,
+  ...props
+}: LogoProps) => {
   return (
-    <LogoWrapper>
-      <StyledSVG height={height} viewBox={`0 0 ${height + 4} ${height + 4}`}>
+    <LogoWrapper {...props}>
+      <StyledSvg size={size} viewBox={`0 0 ${size + 4} ${size + 4}`}>
         <StyledCircle
-          height={height}
-          cx={height / 2 + 2}
-          cy={height / 2 + 2}
-          r={height / 2}
+          size={size}
+          cx={size / 2 + 2}
+          cy={size / 2 + 2}
+          r={size / 2}
           fill="transparent"
           stroke={color}
           strokeWidth="4"
         />
-      </StyledSVG>
-      <StyledLink height={height} color={color}>
+      </StyledSvg>
+      <LogoLabel size={size} color={color}>
         RN
-      </StyledLink>
+      </LogoLabel>
     </LogoWrapper>
   );
 };

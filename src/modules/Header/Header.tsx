@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { colors } from 'utils/colors';
-import { ButtonV1, Logo } from 'components';
+import { NavLink, ButtonV1, Logo, Modal } from 'components';
+import { PrimaryNav } from './components';
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -19,36 +20,35 @@ const HeaderContainer = styled.div`
   max-width: 1200px;
 `;
 
-const LeftNav = styled.nav`
-  display: flex;
-  align-items: center;
+export const Header = () => {
+  const [showModal, setShowModal] = React.useState(false);
 
-  & > *:first-child {
-    margin-right: 25px;
-  }
-
-  & > * {
-    margin-right: 15px;
-  }
-`;
-
-const StyledLink = styled.a`
-  display: block;
-  color: ${colors.WHITE};
-  text-decoration: none;
-  font-size: 18px;
-`;
-
-export const Header = () => (
-  <HeaderWrapper>
-    <HeaderContainer>
-      <LeftNav>
-        <Logo height={40} color={colors.WHITE} />
-        <StyledLink href="#about">About</StyledLink>
-        <StyledLink href="#experience">Experience</StyledLink>
-        <StyledLink href="#portfolio">Portfolio</StyledLink>
-      </LeftNav>
-      <ButtonV1 variant="SECONDARY">Contact Me</ButtonV1>
-    </HeaderContainer>
-  </HeaderWrapper>
-);
+  return (
+    <HeaderWrapper>
+      <HeaderContainer>
+        <PrimaryNav>
+          <Logo size={40} color={colors.WHITE} href="#home" />
+          <NavLink href="#about">About</NavLink>
+          <NavLink href="#experience">Experience</NavLink>
+          <NavLink href="#portfolio">Portfolio</NavLink>
+          <NavLink href="#contact">Contact</NavLink>
+        </PrimaryNav>
+        <ButtonV1
+          variant="SECONDARY"
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          Contact Me
+        </ButtonV1>
+      </HeaderContainer>
+      {showModal && (
+        <Modal
+          onClose={() => {
+            setShowModal(false);
+          }}
+        />
+      )}
+    </HeaderWrapper>
+  );
+};

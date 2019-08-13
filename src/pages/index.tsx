@@ -2,12 +2,13 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { Header } from 'modules/Header/Header';
+import { About } from 'modules/About/About';
 import { Masthead } from 'modules/Masthead/Masthead';
 import { Layout } from 'modules/Layout/Layout';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro:400,600&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Pacifico|Raleway:400,600|Source+Sans+Pro:400,600&display=swap');
 
   * {
     box-sizing: border-box;
@@ -18,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     width: 100%;
     font-family: 'Source Sans Pro';
+    font-family: 'Raleway';
     font-size: 16px;
   }
 
@@ -40,10 +42,19 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.1;
     margin: 0;
   }
+
+  h1 {
+    font-size: 60px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
 `;
 
 const Content = styled.main`
   grid-area: content;
+  overflow: auto;
 `;
 
 interface DataShape {
@@ -63,6 +74,10 @@ const App = ({ data }: DataShape) => (
       <Header />
       <Content>
         <Masthead />
+        <About />
+        <div id="experience" style={{ height: '1200px' }}>
+          This is experience section
+        </div>
       </Content>
     </Layout>
   </>
