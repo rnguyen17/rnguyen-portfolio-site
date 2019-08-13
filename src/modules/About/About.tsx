@@ -10,6 +10,7 @@ import { Avatar } from 'modules/Avatar/Avatar';
 
 const AboutWrapper = styled.section`
   width: 100%;
+  height: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +65,7 @@ const StyledText = styled.p`
 `;
 
 export const About = () => (
-  <AboutWrapper>
+  <AboutWrapper id="about">
     <h2 style={{ color: colors.DARK, fontWeight: 600, fontSize: '40px', marginBottom: '40px' }}>
       Whatever you need, I&apos;ll build it
     </h2>

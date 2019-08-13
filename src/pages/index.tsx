@@ -54,6 +54,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Content = styled.main`
   grid-area: content;
+  overflow: auto;
 `;
 
 interface DataShape {
@@ -74,6 +75,9 @@ const App = ({ data }: DataShape) => (
       <Content>
         <Masthead />
         <About />
+        <div id="experience" style={{ height: '1200px' }}>
+          This is experience section
+        </div>
       </Content>
     </Layout>
   </>
