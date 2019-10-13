@@ -4,27 +4,45 @@ import { colors } from 'utils/colors';
 import { NavLink, ButtonV1, Logo, Modal } from 'components';
 import { PrimaryNav } from './components';
 
-const HeaderWrapper = styled.header`
+const HeaderWrapper = styled.header<{ scrollTop: boolean }>`
+  z-index: 1000;
   display: flex;
   justify-content: center;
-  grid-area: header;
-  background: ${colors.DARK};
+  position: fixed;
+  top: 0;
+  height: 75px;
+  width: 100%;
+  background: ${({ scrollTop }) => (!scrollTop ? colors.DARK : 'transparent')};
+  transition: background-color 0.15s ease-in-out;
 `;
 
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
   width: 100%;
   max-width: 1200px;
 `;
 
 export const Header = () => {
   const [showModal, setShowModal] = React.useState(false);
+  const [scrollTop, setScrollTop] = React.useState(true);
+
+  React.useEffect(() => {
+    const func = () => {
+      setScrollTop(!window.scrollY);
+    };
+
+    const throttledFunc = func;
+    window.addEventListener('scroll', throttledFunc);
+
+    return () => {
+      window.removeEventListener('scroll', throttledFunc);
+    };
+  });
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper scrollTop={scrollTop}>
       <HeaderContainer>
         <PrimaryNav>
           <Logo size={40} color={colors.WHITE} href="#home" />
@@ -33,14 +51,14 @@ export const Header = () => {
           <NavLink href="#portfolio">Portfolio</NavLink>
           <NavLink href="#contact">Contact</NavLink>
         </PrimaryNav>
-        <ButtonV1
+        {/* <ButtonV1
           variant="SECONDARY"
           onClick={() => {
             setShowModal(true);
           }}
         >
           Contact Me
-        </ButtonV1>
+        </ButtonV1> */}
       </HeaderContainer>
       {showModal && (
         <Modal

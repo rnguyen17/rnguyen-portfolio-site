@@ -26,12 +26,12 @@ const ButtonStyles = {
   `,
   GHOST: css`
     background: transparent;
+    border: 1px solid ${colors.DARK};
     color: ${colors.WHITE};
-    border: 2px solid ${colors.WHITE};
 
     &:hover {
-      border-color: ${colors.SECONDARY};
-      color: ${colors.SECONDARY};
+      border-color: ${colors.WHITE};
+      /* color: ${colors.SECONDARY}; */
       /* color: ${colors.WHITE};
       background: ${colors.SECONDARY}; */
     }
@@ -42,14 +42,16 @@ const ButtonWrapper = styled.button<ButtonV1Props>`
   height: 50px;
   width: 250px;
   border: none;
-  border-radius: 25px;
+  border-radius: 5px;
   font-size: 18px;
   font-family: 'Raleway';
-  font-weight: 600;
+  font-weight: 400;
+  /* position: relative; */
   cursor: pointer;
   transition: all 0.15s ease-out;
 
   &:hover {
+    transform: translateY(-1px);
     transition: all 0.15s ease-out;
   }
 
