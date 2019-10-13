@@ -35,14 +35,18 @@ interface NavLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
 
 export const NavLink: React.FC<NavLinkProps> = ({ href, children, ...props }) => {
   const isAnchorLink = href.indexOf('#') === 0;
-  let scrollElement: Element;
+  let scrollElement: HTMLElement;
   const onClickHandler = () => {
     if (isAnchorLink) {
       if (!scrollElement) {
         scrollElement = document.getElementById(href.slice(1));
       }
       event.preventDefault();
-      scrollElement.scrollIntoView({ behavior: 'smooth' });
+      // scrollElement.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo({
+        top: scrollElement.offsetTop - 70,
+        behavior: 'smooth',
+      });
     }
   };
 

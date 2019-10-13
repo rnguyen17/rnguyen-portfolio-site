@@ -9,40 +9,39 @@ const MastheadWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background: ${colors.DARK};
+  background-image: url('planet-background.jpg');
+  background-size: cover;
 `;
 
 const TitleWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(12, 13, 15, 0.85);
 `;
 
 const Title = styled.h1`
-  font-size: 60px;
+  font-size: 72px;
   font-weight: 600;
   text-align: center;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
   color: ${colors.WHITE};
   color: ${colors.SECONDARY};
 `;
 
-const Divider = styled.hr`
-  width: 200px;
-  height: 2px;
-  margin: 20px auto;
-  background: #fff;
-`;
-
 const SubTitle = styled.p`
   font-size: 24px;
   line-height: 32px;
-  font-style: italic;
   max-width: 700px;
-  margin: 30px auto 60px;
+  margin: 24px auto 48px;
   text-align: center;
   color: ${colors.WHITE};
 `;
@@ -56,21 +55,6 @@ const StyledForm = styled.div`
   }
 `;
 
-const Text = styled.h2`
-  border: 2px solid ${colors.WHITE};
-  border-radius: 4px;
-  font-size: 18px;
-  color: ${colors.WHITE};
-  padding: 0 15px;
-  line-height: 50px;
-  font-weight: 400;
-
-  &:hover {
-    border-color: ${colors.PRIMARY};
-    background: ${colors.PRIMARY};
-    transition: all 0.15s ease-out;
-  }
-`;
 const CircleGuy = styled.span`
   margin-left: 8px;
   display: flex;
@@ -88,7 +72,7 @@ const CircleGuy = styled.span`
 const StyledNavLink = styled(NavLink)`
   display: inline-flex;
   align-items: center;
-  margin: 30px auto 0;
+  margin: 6rem auto 0;
 
   &::after {
     display: none;
@@ -108,13 +92,10 @@ export const Masthead = () => {
     <MastheadWrapper>
       <TitleWrapper>
         <Title>Your search for a UI Engineer is over.</Title>
-        <Divider />
-        <SubTitle>
-          Whether you're a scaling business or a solo contractor, Whatever you need, I'll build it.
-        </SubTitle>
+        <SubTitle>Let&apos;s build something great together.</SubTitle>
         <StyledForm>
-          <ButtonV1 variant="GHOST">Schedule a call</ButtonV1>
           <ButtonV1 variant="PRIMARY">Download my resume</ButtonV1>
+          <ButtonV1 variant="GHOST">Schedule a call</ButtonV1>
         </StyledForm>
         <StyledNavLink href="#about">
           More about me <CircleGuy>&gt;</CircleGuy>
