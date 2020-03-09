@@ -69,7 +69,7 @@ export const PortfolioSection = () => {
   return (
     <StyledSection id="portfolio">
       <FlexContainer>
-        <StyledTitle>You're standing in good company</StyledTitle>
+        <StyledTitle>Project Portfolio & Work Experience</StyledTitle>
         <StyledUl>
           <StyledListItem>
             <ListLabel>Senior UI Engineer - Express Scripts</ListLabel>
